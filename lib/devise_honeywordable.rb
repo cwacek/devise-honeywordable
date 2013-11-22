@@ -1,4 +1,7 @@
 require 'devise_honeywordable/version'
+require 'devise_honeywordable/routes.rb'
+require 'devise_honeywordable/model.rb'
+require 'pry'
 
 module Devise
   mattr_accessor :honeyword_count
@@ -6,12 +9,12 @@ module Devise
 end
 
 module DeviseHoneywordable
-  autoload :Schema, 'devise_honeywordable/schema'
 
-  module Controllers
-    autoload :Helpers, 'devise_honeywordable/controllers/helpers'
-  end
+
 end
 
-
-Devise.add_module :honeywordable, :controller => :devise_honeywordable
+Devise.add_module :honeyword_authenticatable,
+                  :model => 'devise_honeywordable/model',
+                  :route => :session,
+                  :controller => :session,
+                  :strategy => true
