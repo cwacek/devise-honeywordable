@@ -1,5 +1,4 @@
 require 'devise_honeywordable/version'
-require 'devise_honeywordable/routes.rb'
 require 'devise_honeywordable/model.rb'
 require 'pry'
 
@@ -9,7 +8,6 @@ module Devise
 end
 
 module DeviseHoneywordable
-
 
 end
 
