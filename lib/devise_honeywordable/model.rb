@@ -23,6 +23,7 @@ module Devise
 
       # Generates a set of honeywords for the new user
       def password=(new_password)
+        @password = new_password
         @passwd= Honeyword.new
         @passwd.encrypted_honeyword = ::BCrypt::Password.create("#{new_password}").to_s
 
@@ -45,6 +46,10 @@ module Devise
         false
       end
 
+      def clean_up_passwords
+          self.password = self.password_confirmation = self.passwd = nil
+      end
+
       protected
 
       def save_honeywords_on_create
@@ -56,6 +61,8 @@ module Devise
             # HoneywordAuthService.new_auth self.id, i
           end
         end
+
+        clean_up_passwords
 
         true
       end
